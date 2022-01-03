@@ -4,8 +4,16 @@ package main;
 
 option go_package="./proto";
 
+import "google/api/annotations.proto";
+// import "google.golang.org/protobuf/proto";
+
 service TestApi {
-    rpc Echo(ResponseRequest) returns (ResponseRequest) {};
+    rpc Echo(ResponseRequest) returns (ResponseRequest) {
+        option (google.api.http) = {
+            post: "/echo"
+            body: "*"
+        };
+    }
     rpc GetUser(UserRequest) returns (UserResponse) {};
 }
 
